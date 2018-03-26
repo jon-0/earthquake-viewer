@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+</head>
+<body>
+	<h2>Select Options:</h2>
+	<label>Minimum Magnitude</label>
+	<select name="" id="">
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+	  <option value="3">3</option>
+	</select>
+
+	<br>
+	<br>
+
+	<p>Start Date</p>
+	<input type="text" id="startDate" placeholder="Select a start date.." class="calendar" data-input></input>
+	 <span class="far fa-calendar-alt"></span>
+
+	<p>End Date</p>
+	<input type="text" id="endDate" placeholder="Select an end date.." class="calendar"></input>
+	<br><br>
+	<button onClick="search()" id="goButton">Go</button>
+
+	<h2>Earthquake Data</h2>
+	<p id="response"></p>
+
+
+
+
+
+	<!-- scripts -->
+	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+	<script type="text/javascript" src="app.js"></script>
+</body>
+</html>
