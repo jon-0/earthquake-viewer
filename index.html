@@ -1,36 +1,59 @@
 <!DOCTYPE html>
-<html>
-<head>
+<html lang="en" dir="ltr">
+	<head>
 	<title></title>
+	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
+
+<form id="form" novalidate>
 	<h2>Select Options:</h2>
-	<label>Minimum Magnitude</label>
-	<select name="" id="">
-	  <option value="1">1</option>
-	  <option value="2">2</option>
-	  <option value="3">3</option>
-	</select>
+	<div class="option">
+			<label for="minMag">Minimum Magnitude</label>
+			<select name="" id="">
+				<option value="1">1</option>
+				<option value="2">2</option>
+				<option value="3">3</option>
+				<option value="4">4</option>
+				<option value="5">5</option>
+				<option value="6">6</option>
+			</select>
+	</div>
 
-	<br>
-	<br>
+	<div class="option">
+		<label>Maximum Magnitude</label>
+		<select name="" id="" required>
+			<option value="1">1</option>
+			<option value="2">2</option>
+			<option value="3">3</option>
+			<option value="4">4</option>
+			<option value="5">5</option>
+			<option value="6">6</option>
+		</select>
+	</div>
 
-	<p>Start Date</p>
-	<input type="text" id="startDate" placeholder="Select a start date.." class="calendar" data-input></input>
-	 <span class="far fa-calendar-alt"></span>
+	<div class="option">
+		<label>Start Date</label>
+		<input type="text" id="startDate" class="calendar" required>
+		 <span class="far fa-calendar-alt"></span>
+	</div>
 
-	<p>End Date</p>
-	<input type="text" id="endDate" placeholder="Select an end date.." class="calendar"></input>
-	<br><br>
-	<button onClick="search()" id="goButton">Go</button>
+	<div class="option">
+		<label>End Date</label>
+		<input type="text" id="endDate" class="calendar" required>
+			 <span class="far fa-calendar-alt"></span>
+	</div>
+	<span class="error" aria-live="polite"></span>
+	<input type="submit" id="goButton" onclick="search()">
+</form>
 
+<div class="results">
 	<h2>Earthquake Data</h2>
 	<p id="response"></p>
-
-
-
+</div>
 
 
 	<!-- scripts -->

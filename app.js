@@ -1,10 +1,15 @@
 //https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-03-24T00:00:00&endtime=2018-03-24T23:00:00
+// Sun Apr 01 2018 12:00:00 GMT-0400 (EDT)
+
+document.getElementById('form').onsubmit = function(e){
+    e.preventDefault();
+}
+
 var requestString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
+var error = document.querySelector('.error');
 
 var startDate = flatpickr((document.querySelector('#startDate')), {
   enableTime: true,
-  altInput: true,
-  altFormat: "F j, Y H:i",
   dateFormat: "Y-m-d H:i",
   maxDate: "today",
   onClose: function(selectedDates, dateStr, instance){
@@ -15,8 +20,6 @@ var startDate = flatpickr((document.querySelector('#startDate')), {
 
 var endDate = flatpickr((document.querySelector('#endDate')), {
   enableTime: true,
-  altInput: true,
-  altFormat: "F j, Y H:i",
   dateFormat: "Y-m-d H:i",
   maxDate: "today",
   defaultHour: 23,
@@ -32,16 +35,25 @@ var endDate = flatpickr((document.querySelector('#endDate')), {
 var req = new XMLHttpRequest();
 req.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
-      // console.log(this.responseText);
+      //console.log(this.readyState, this.status);
       var response_Paragraph = document.getElementById('response');
       response_Paragraph.innerHTML = "<p>" + this.responseText + "</p>";
+      console.log(startDate.input.value);
     }
-  };
+};
 
-function search () {
-  req.open("GET", "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-03-24T00:00:00&endtime=2018-03-24T23:00:00", true);
-  req.send();  
-  console.log("Search function triggered. Request sent.");
+function search() {
+  // error handling
+  if (startDate.selectedDates.length == 0) {
+    error.innerHTML = "You must enter a start date.";
+    error.className = "error active";
+  } else if (endDate.selectedDates.length == 0){
+    error.innerHTML = "You must enter an end date.";
+    error.className = "error active";
+  } else {
+    req.open("GET", "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-03-24T00:00:00&endtime=2018-03-24T23:00:00", true);
+    req.send();
+    console.log("Search function triggered. Request sent.");
+  }
+
 }
-
-
