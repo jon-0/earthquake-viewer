@@ -1,8 +1,12 @@
+//"https://earthquake.usgs.gov/fdsnws/event/1/query?
+// format=geojson&starttime=2018-04-02T12:00:00&endtime=2018-04-02T15:00:00&minmagnitude=3&maxmagnitude=6"
+
 var form = document.getElementById('form').onsubmit = function(e){
     e.preventDefault();
 }
 
-var requestString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
+var max = document.getElementById('maxMag');
+var min = document.getElementById('minMag');
 var error = document.querySelector('.error');
 
 var startDate = flatpickr((document.querySelector('#startDate')), {
@@ -33,10 +37,14 @@ function dateBuilder(str){
 function createRequestString(){
   var start = startDate.input.value;
   var end = endDate.input.value;
+  var maxMag = max.value;
+  var minMag = min.value;
   var urlString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=";
   urlString += dateBuilder(start);
   urlString += "&endtime=";
   urlString += dateBuilder(end);
+  urlString += "&minmagnitude=" + minMag;
+  urlString += "&maxmagnitude=" + maxMag;
   console.log(urlString);
   return urlString;
 }
