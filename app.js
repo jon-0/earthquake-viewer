@@ -1,6 +1,3 @@
-//"https://earthquake.usgs.gov/fdsnws/event/1/query?
-// format=geojson&starttime=2018-04-02T12:00:00&endtime=2018-04-02T15:00:00&minmagnitude=3&maxmagnitude=6"
-
 var form = document.getElementById('form').onsubmit = function(e){
     e.preventDefault();
 }
@@ -57,9 +54,10 @@ var req = new XMLHttpRequest();
 req.onreadystatechange = function(e) {
     e.preventDefault();
     if (this.readyState == 4 && this.status == 200) {
-      var response_Paragraph = document.getElementById('response');
-      response_Paragraph.innerHTML = "<p>" + this.responseText + "</p>";
-      console.log(startDate.input.value);
+      var responseParagraph = document.getElementById('responseParagraph');
+      var response = JSON.parse(this.responseText);
+      console.log(response);
+      responseParagraph.innerHTML = "<h3>Results:</h3><p>" + response + "</p>";
     }
 };
 
