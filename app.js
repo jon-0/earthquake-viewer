@@ -1,9 +1,6 @@
-//https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-03-24T00:00:00&endtime=2018-03-24T23:00:00
-// Sun Apr 01 2018 12:00:00 GMT-0400 (EDT)
-//
-// document.getElementById('form').onsubmit = function(e){
-//     e.preventDefault();
-// }
+var form = document.getElementById('form').onsubmit = function(e){
+    e.preventDefault();
+}
 
 var requestString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson"
 var error = document.querySelector('.error');
@@ -28,6 +25,22 @@ var endDate = flatpickr((document.querySelector('#endDate')), {
   }
 );
 
+// date-string builder
+function dateBuilder(str){
+   return str.replace(" ", "T") + ":00";
+}
+
+function createRequestString(){
+  var start = startDate.input.value;
+  var end = endDate.input.value;
+  var urlString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=";
+  urlString += dateBuilder(start);
+  urlString += "&endtime=";
+  urlString += dateBuilder(end);
+  console.log(urlString);
+  return urlString;
+}
+
 // ************
 // AJAX Request
 // ************
@@ -36,7 +49,6 @@ var req = new XMLHttpRequest();
 req.onreadystatechange = function(e) {
     e.preventDefault();
     if (this.readyState == 4 && this.status == 200) {
-      //console.log(this.readyState, this.status);
       var response_Paragraph = document.getElementById('response');
       response_Paragraph.innerHTML = "<p>" + this.responseText + "</p>";
       console.log(startDate.input.value);
@@ -52,7 +64,10 @@ function search() {
     error.innerHTML = "You must enter an end date.";
     error.className = "error active";
   } else {
-    req.open("GET", "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2018-03-24T00:00:00&endtime=2018-03-24T23:00:00", true);
+    error.innerHTML = ""; // Reset the content of the message
+    error.className = "error";
+
+    req.open("GET", createRequestString(), true);
     req.send();
     console.log("Search function triggered. Request sent.");
   }
