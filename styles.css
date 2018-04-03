@@ -39,4 +39,23 @@ input:focus:invalid {
 
 .error.active {
   padding: 0.3em;
+  margin-top: 10px;
+}
+
+.app {
+  outline: 2px solid black;
+  margin: 50px 200px;
+
+}
+
+form {
+
+  margin: 0 auto;
+  padding: 20px 30px;
+}
+
+.results {
+
+  margin: 0 auto;
+  text-align: center;
 }

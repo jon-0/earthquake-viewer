@@ -11,10 +11,10 @@ var startDate = flatpickr((document.querySelector('#startDate')), {
   dateFormat: "Y-m-d H:i",
   maxDate: "today",
   onClose: function(selectedDates, dateStr, instance){
-      endDate['config']['minDate'] = dateStr; // setDate's minimum to selected start date for validation
-    }
+    // setDate's minimum to selected start date for validation
+    endDate['config']['minDate'] = dateStr;
   }
-);
+});
 
 var endDate = flatpickr((document.querySelector('#endDate')), {
   enableTime: true,
@@ -36,7 +36,8 @@ function createRequestString(){
   var end = endDate.input.value;
   var maxMag = max.value;
   var minMag = min.value;
-  var urlString = "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=";
+  var urlString =
+  "https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=";
   urlString += dateBuilder(start);
   urlString += "&endtime=";
   urlString += dateBuilder(end);
@@ -68,6 +69,9 @@ function search() {
     error.className = "error active";
   } else if (endDate.selectedDates.length == 0){
     error.innerHTML = "You must enter an end date.";
+    error.className = "error active";
+  } else if (parseInt(max.value) < parseInt(min.value)) {
+    error.innerHTML = "Minimum Magnitude cannot exceed Maximum Magnitude."
     error.className = "error active";
   } else {
     error.innerHTML = ""; // Reset the content of the message
