@@ -13,6 +13,8 @@ var startDate = flatpickr((document.querySelector('#startDate')), {
   onClose: function(selectedDates, dateStr, instance){
     // setDate's minimum to selected start date for validation
     endDate['config']['minDate'] = dateStr;
+    endDate['hourElement']['defaultValue'] = 23;
+    endDate['minuteElement']['defaultValue'] = 59;
   }
 });
 
@@ -47,6 +49,16 @@ function createRequestString(){
   return urlString;
 }
 
+function htmlBuilder(response) {
+  var html = "<div id='response'>";
+  // loop
+  for (var i = 0; i < response.features.length; i++){
+    html += "<p>" + response.features[i].properties.place + "</p>"
+  }
+  html += "</div>";
+  return html;
+};
+
 // ************
 // AJAX Request
 // ************
@@ -58,7 +70,9 @@ req.onreadystatechange = function(e) {
       var responseParagraph = document.getElementById('responseParagraph');
       var response = JSON.parse(this.responseText);
       console.log(response);
-      responseParagraph.innerHTML = "<h3>Results:</h3><p>" + response + "</p>";
+      responseParagraph.innerHTML =
+        "<h3>" + response.features.length +
+        " Results:</h3>" + htmlBuilder(response);
     }
 };
 
