@@ -50,10 +50,13 @@ function createRequestString(){
 }
 
 function htmlBuilder(response) {
-  var html = "<div id='response'>";
+  var html = "<div id='data'>";
   // loop
   for (var i = 0; i < response.features.length; i++){
-    html += "<p>" + response.features[i].properties.place + "</p>"
+    html += "<div class='earthquake'>";
+    html += "<p>" + response.features[i].properties.place + "</p>";
+    html += "<p>Magnitude: " + response.features[i].properties.mag + "</p>";
+    html += "</div>";
   }
   html += "</div>";
   return html;
