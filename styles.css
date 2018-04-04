@@ -43,8 +43,7 @@ input:focus:invalid {
 }
 
 .app {
-  outline: 2px solid black;
-  margin: 50px 200px;
+
 
 }
 
@@ -54,8 +53,17 @@ form {
   padding: 20px 30px;
 }
 
-.results {
+.results, .data {
 
   margin: 0 auto;
   text-align: center;
+}
+
+.earthquake {
+  background-color: pink;
+}
+
+#map {
+  height: 400px;
+  width: 100%;
 }

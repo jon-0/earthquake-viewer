@@ -4,7 +4,8 @@
 	<title></title>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+	<link rel="stylesheet" type="text/css"
+	href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
 	<link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -63,15 +64,24 @@
 
 	<div class="results">
 		<h2>Earthquake Data</h2>
+		<div id="map"></div>
 		<p id="responseParagraph"></p>
 	</div>
 </div>
 
 
 
+
+
 	<!-- scripts -->
 	<script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
-	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js" integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ" crossorigin="anonymous"></script>
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"
+	integrity="sha384-SlE991lGASHoBfWbelyBPLsUlwY1GwNDJo3jSJO04KZ33K2bwfV9YBauFfnzvynJ"
+	crossorigin="anonymous"></script>
+	<script async defer
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDmsN4rEaZqQet8Pjsu9WRKM4vjbuqPwiQ">
+	</script>
+	<script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
 	<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
