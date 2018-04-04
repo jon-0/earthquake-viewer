@@ -64,10 +64,9 @@ function htmlBuilder(response) {
 };
 
 function initMap(response) {
-  var uluru = {lat: -25.363, lng: 131.044};
   map = new google.maps.Map(document.getElementById('map'), {
-    zoom: 4,
-    center: uluru
+    zoom: 2,
+    center: {lat: 48.6228403, lng: -31.9180738}
   });
   for (var i = 0; i < response.features.length; i++) {
     var coords = response.features[i].geometry.coordinates;
