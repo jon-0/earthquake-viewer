@@ -63,15 +63,12 @@ function htmlBuilder(response) {
   return html;
 };
 
-function initMap() {
+function initMap(response) {
   var uluru = {lat: -25.363, lng: 131.044};
-  var map = new google.maps.Map(document.getElementById('map'), {
+  map = new google.maps.Map(document.getElementById('map'), {
     zoom: 4,
     center: uluru
   });
-}
-
-function mapBuilder(response) {
   for (var i = 0; i < response.features.length; i++) {
     var coords = response.features[i].geometry.coordinates;
     var latLng = new google.maps.LatLng(coords[1], coords[0]);
@@ -81,6 +78,7 @@ function mapBuilder(response) {
     });
   }
 }
+
 // ************
 // AJAX Request
 // ************
@@ -92,8 +90,7 @@ req.onreadystatechange = function(e) {
       var responseParagraph = document.getElementById('responseParagraph');
       var response = JSON.parse(this.responseText);
       console.log(response);
-      initMap();
-      mapBuilder(response);
+      initMap(response);
       responseParagraph.innerHTML =
         "<h3>" + response.features.length +
         " Results:</h3>" + htmlBuilder(response);
